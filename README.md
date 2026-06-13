@@ -1,4 +1,4 @@
-#  Restaurant Data Analysis 
+# Restaurant Data Analysis
 
 ![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
 ![Pandas](https://img.shields.io/badge/pandas-%23150458.svg?style=for-the-badge&logo=pandas&logoColor=white)
@@ -11,20 +11,23 @@
 
 ---
 
-##  Project Structure
+## Project Structure
 
-| File | Description |
-|------|-------------|
-| `level1.ipynb` | Foundational EDA — cuisine types, city density, price distribution, delivery vs rating |
-| `level3.ipynb` | Advanced analysis — NLP text preprocessing, votes correlation, price vs service breakdown |
-| `Dataset .csv` | Zomato dataset — 9,551 rows, 21 columns |
-| `task1_text_analysis.py` | Standalone script for Task 1 (text analysis) |
-| `task2_votes_analysis.py` | Standalone script for Task 2 (votes analysis) |
-| `task3_price_services.py` | Standalone script for Task 3 (price vs services) |
+| File / Folder | Description |
+| :--- | :--- |
+| [projects/](projects) | Contains the core implementation notebooks |
+| [projects/level1.ipynb](projects/level1.ipynb) | Foundational EDA — cuisine types, city density, price distribution, delivery vs rating |
+| [projects/level3.ipynb](projects/level3.ipynb) | Advanced analysis — NLP text preprocessing, votes correlation, price vs service breakdown |
+| [images/](images) | Saved data visualization plots (.png format) |
+| [price_range_distribution.png](images/price_range_distribution.png) | Task 3 Level 1 — price tier distribution chart |
+| [task1_length_vs_rating.png](images/task1_length_vs_rating.png) | Task 1 Level 3 — cuisine text length vs rating |
+| [task2_votes_vs_rating.png](images/task2_votes_vs_rating.png) | Task 2 Level 3 — votes vs aggregate rating scatter |
+| [task3_price_vs_services.png](images/task3_price_vs_services.png) | Task 3 Level 3 — service availability by price tier |
+| Dataset .csv | Zomato dataset — 9,551 rows, 21 columns |
 
 ---
 
-##  Level 1  Exploratory Data Analysis
+## Level 1 — Exploratory Data Analysis
 
 ### Task 1 · Cuisine Type Analysis
 - Inspected dtype and missing values in the `Cuisines` column
@@ -42,6 +45,8 @@
 - Calculated absolute count and % share per tier
 - Visualised with `sns.countplot()` using viridis palette and saved as `price_range_distribution.png`
 
+![](images/price_range_distribution.png)
+
 ### Task 4 · Online Delivery vs Rating
 - Calculated % of restaurants offering online delivery
 - Segmented into delivery vs no-delivery groups
@@ -49,7 +54,7 @@
 
 ---
 
-##  Level 3  Advanced Analysis
+## Level 3 — Advanced Analysis
 
 ### Task 1 · Text Analysis (NLP)
 - Preprocessed `Cuisines` column: `fillna('')`, lowercase, regex to strip special characters
@@ -58,28 +63,34 @@
 - Applied **VADER Sentiment Analysis** on `Rating text` column to assign polarity scores; grouped words where `polarity > 0.5` (positive) and `< -0.5` (negative)
 - Plotted average cuisine text length per rating tier using scatter + line chart
 
+![](images/task1_length_vs_rating.png)
+
 ### Task 2 · Votes Analysis
 - Found extremes: **Toit** holds max votes (10,934), 1,094 restaurants have 0 votes
-- Pearson correlation between votes and rating: **r = 0.31** (weak-to-moderate positive)
+- Pearson correlation between votes and rating: **r = 0.3137** (weak-to-moderate positive)
 - Visualised with `sns.regplot()` with 95% confidence interval band
+
+![](images/task2_votes_vs_rating.png)
 
 ### Task 3 · Price Range vs Services
 - Converted Yes/No columns to binary with `.map({'Yes': 1, 'No': 0})`
 - Computed service availability % per tier using `groupby().mean() * 100`
 - Created grouped and stacked bar charts saved as `task3_price_vs_services.png`
 
-| Price Tier | Online Delivery | Table Booking |
-|------------|----------------|---------------|
-| Tier 1 (Budget) | 15.8% | 0.02% |
-| Tier 2 | 41.3% | 7.7% |
-| Tier 3 | 29.2% | 45.7% |
-| Tier 4 (Premium) | 9.0% | 46.8% |
+![](images/task3_price_vs_services.png)
 
->  Online delivery peaks at Tier 2 then drops. Table booking rises sharply at Tiers 3–4 — premium restaurants prioritise in-dining over delivery.
+| Price Tier | Online Delivery | Table Booking |
+| :--- | :--- | :--- |
+| Tier 1 (Budget) | 15.77% | 0.02% |
+| Tier 2 | 41.31% | 7.68% |
+| Tier 3 | 29.19% | 45.74% |
+| Tier 4 (Premium) | 9.04% | 46.76% |
+
+> Online delivery peaks at Tier 2 then drops. Table booking rises sharply at Tiers 3–4 — premium restaurants prioritise in-dining over delivery.
 
 ---
 
-##  Setup
+## Setup
 
 ```bash
 # install via mamba (conda environment)
@@ -95,12 +106,12 @@ jupyter notebook level3.ipynb
 
 ---
 
-##  Key Findings
+## Key Findings
 
 - **North Indian** cuisine dominates across all rating levels — it's the largest category, spanning both extremes
-- **More votes ≠ guaranteed quality** — r = 0.31 shows a real but loose relationship
-- **Budget restaurants** barely offer table booking (0.02%) while premium ones embrace it (~47%)
-- **Delivery is a mid-tier thing** — Tier 2 restaurants offer it most, budget and premium restaurants both avoid it
+- **More votes ≠ guaranteed quality** — r = 0.3137 shows a real but loose relationship
+- **Budget restaurants** barely offer table booking (0.02%) while premium ones embrace it (~46.76%)
+- **Delivery is a mid-tier thing** — Tier 2 restaurants offer it most at 41.31%, budget and premium both stay under 16%
 
 ---
 
