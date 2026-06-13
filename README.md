@@ -11,6 +11,15 @@
 
 ---
 
+##  Project Walkthrough & Demonstration
+
+A comprehensive 4-minute video deep-dive walking through the data cleaning, exploratory analysis, and advanced NLP text processing phases of the Zomato dataset.
+
+[![Watch the Walkthrough](https://img.shields.io/badge/Google_Drive-Watch_Video_Demo-blue?style=for-the-badge&logo=googledrive&logoColor=white)](https://drive.google.com/file/d/1NoK23WJQif-UNFrkI6Px_dboKblUvvqB/view?usp=sharing)
+
+*Click the badge above to watch the full walkthrough showcasing the complete end-to-end data workflow, interactive visualizations, and VADER Sentiment Analysis implementations.*
+
+---
 ## Project Structure
 
 | File / Folder | Description |
